@@ -21,7 +21,7 @@ sudo docker pull george/gae
 sudo docker build -t george/gae .
 ```
 
-os: 因為我的 dev_appserver.sh 的script 是指定 georgefs/gae 的docker repo, 所以build 也需要用這個名子喔"
+os: 因為我的 dev_appserver.sh 的script 是指定 georgefs/gae 的docker repo, 所以build 也需要用這個名子來做image喔"
 
 使用
 ---
@@ -39,6 +39,5 @@ dev_appserver.sh .
 
 如果有人想問為什麼要用nginx 再轉一次localhost..
 原因只是因為我是 windows ~> vagrant:ubuntu ~> docker:ubuntu
-vagrant 我用 nat 給ip" 不是shared port..  所以我連 vagrant:ubuntu 是ip XDDD  不是127.0.0.1 or localhost 所以需要多一層proxy 轉導到localhost"
 
-有點蠢- -"  不過這樣開, 同公司就可以看得到demo 了XDDD
+有點蠢- -"  不過這樣開有一些好處.. 這樣接外部也可以連..
