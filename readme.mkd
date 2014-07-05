@@ -1,0 +1,34 @@
+sample google appengine env
+---
+
+簡單用docker 做google appengine 的環境
+
+原因
+---
+每次重灌, 有新人來, 環境都需要再一次部屬..
+我膩了..
+
+
+setup
+---
+整包直接pull
+```
+sudo docker pull george/gae
+```
+
+想直接自己build
+```
+sudo docker build -t george/gae .
+```
+
+
+使用
+---
+把 `dev_appserver.sh` 移到你的appengine project內 和app.yaml 同層!!
+
+```
+dev_appserver.sh .
+```
+這樣就可以run 了!!!
+
+
