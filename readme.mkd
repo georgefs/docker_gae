@@ -21,6 +21,7 @@ sudo docker pull george/gae
 sudo docker build -t george/gae .
 ```
 
+os: 因為我的 dev_appserver.sh 的script 是指定 georgefs/gae 的docker repo, 所以build 也需要用這個名子喔"
 
 使用
 ---
