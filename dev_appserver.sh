@@ -9,8 +9,7 @@ HOST_PORT=8080
 
 IMAGE=georgefs/gae
 
-HOST_FOLDER=$HOME/.boot2docker/shared
-CONTAINER_FOLDER=/tmp/shared
+VM_FOLDER=/tmp/shared
 
 HASH=`echo $CURRENT_PATH|md5sum|awk '{print $1}'`
 
@@ -28,14 +27,19 @@ else
     
     
     # check vm folder
-    boot2docker ssh test $CONTAINER_FOLDER || mkdir $CONTAINER_FOLDER && chmod -R docker:docker $CONTAINER_FOLDER
+    boot2docker ssh test $VM_FOLDER || mkdir $VM_FOLDER && chmod -R docker:docker $VM_FOLDER
 
-    test $HOST_FOLDER || sshfs docker@localhost:/tmp/share $HOST_FOLDER -oping_diskarb,volname=share -p 2022 -o reconnect -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o password_stdin < ~/.boot2docker/b2d-passwd
+    sshfs docker@localhost:$VM_FOLDER $CURRENT_PATH -oping_diskarb,volname=share -p 2022 -o reconnect -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o password_stdin < ~/.boot2docker/b2d-passwd
 
-    test $LINK_FOLDER || ln -s $CURRENT_PATH $LINK_FOLDER
-    SYNC_PATH=$CONTAINER_FOLDER/$HASH
+    SYNC_PATH=$VM_FOLDER
 fi
 
 docker run -i -t --rm=True -v $SYNC_PATH:/srv/worker -w /srv/worker -p $HOST_PORT:$CONTAINER_PORT $IMAGE /bin/run $@
+
+
+
+if [[ "$KERNEL" != 'Linux' ]]; then
+    sudo umount $CURRENT_PATH
+fi
 
 
