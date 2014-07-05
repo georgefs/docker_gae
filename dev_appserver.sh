@@ -36,5 +36,6 @@ else
     SYNC_PATH=$CONTAINER_FOLDER/$HASH
 fi
 
-docker run -i -t -v $SYNC_PATH:/srv/worker -w /srv/worker -p $HOST_PORT:$CONTAINER_PORT $IMAGE /bin/run $@
+docker run -i -t --rm=True -v $SYNC_PATH:/srv/worker -w /srv/worker -p $HOST_PORT:$CONTAINER_PORT $IMAGE /bin/run $@
+
 

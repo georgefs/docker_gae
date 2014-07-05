@@ -21,9 +21,11 @@ sudo docker pull george/gae
 sudo docker build -t george/gae .
 ```
 
+os: 因為我的 dev_appserver.sh 的script 是指定 georgefs/gae 的docker repo, 所以build 也需要用這個名子來做image喔"
 
 使用
 ---
+
 把 `dev_appserver.sh` 移到你的appengine project內 和app.yaml 同層!!
 
 ```
@@ -32,3 +34,10 @@ dev_appserver.sh .
 這樣就可以run 了!!!
 
 
+備註
+---
+
+如果有人想問為什麼要用nginx 再轉一次localhost..
+原因只是因為我是 windows ~> vagrant:ubuntu ~> docker:ubuntu
+
+有點蠢- -"  不過這樣開有一些好處.. 這樣接外部也可以連..
