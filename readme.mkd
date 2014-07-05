@@ -24,6 +24,7 @@ sudo docker build -t george/gae .
 
 使用
 ---
+
 把 `dev_appserver.sh` 移到你的appengine project內 和app.yaml 同層!!
 
 ```
@@ -32,3 +33,11 @@ dev_appserver.sh .
 這樣就可以run 了!!!
 
 
+備註
+---
+
+如果有人想問為什麼要用nginx 再轉一次localhost..
+原因只是因為我是 windows ~> vagrant:ubuntu ~> docker:ubuntu
+vagrant 我用 nat 給ip" 不是shared port..  所以我連 vagrant:ubuntu 是ip XDDD  不是127.0.0.1 or localhost 所以需要多一層proxy 轉導到localhost"
+
+有點蠢- -"  不過這樣開, 同公司就可以看得到demo 了XDDD
